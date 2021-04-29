@@ -1,0 +1,294 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="StockModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="data">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="證券代號" Type="nvarchar" MaxLength="50" />
+          <Property Name="證券名稱" Type="nvarchar" MaxLength="50" />
+          <Property Name="成交股數" Type="nvarchar" MaxLength="50" />
+          <Property Name="成交筆數" Type="nvarchar" MaxLength="50" />
+          <Property Name="成交金額" Type="nvarchar" MaxLength="50" />
+          <Property Name="開盤價" Type="nvarchar" MaxLength="50" />
+          <Property Name="最高價" Type="nvarchar" MaxLength="50" />
+          <Property Name="最低價" Type="nvarchar" MaxLength="50" />
+          <Property Name="收盤價" Type="nvarchar" MaxLength="50" />
+          <Property Name="漲跌正or負" Type="nvarchar" MaxLength="50" />
+          <Property Name="漲跌價差" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="datasave">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="account" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="證券代號" Type="nvarchar" MaxLength="50" />
+          <Property Name="證券名稱" Type="nvarchar" MaxLength="50" />
+          <Property Name="成交股數" Type="nvarchar" MaxLength="50" />
+          <Property Name="成交筆數" Type="nvarchar" MaxLength="50" />
+          <Property Name="成交金額" Type="nvarchar" MaxLength="50" />
+          <Property Name="開盤價" Type="nvarchar" MaxLength="50" />
+          <Property Name="最高價" Type="nvarchar" MaxLength="50" />
+          <Property Name="最低價" Type="nvarchar" MaxLength="50" />
+          <Property Name="收盤價" Type="nvarchar" MaxLength="50" />
+          <Property Name="漲跌正or負" Type="nvarchar" MaxLength="50" />
+          <Property Name="漲跌價差" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="members">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="account" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="password" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="bankmoney" Type="int" />
+          <Property Name="photo" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="stockremain">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="account" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="證券代號" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="證券名稱" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="成交均價" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="張數" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="持有成本" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="現價" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="現值" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="預估收入" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="預估損益" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="預估獲利率" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="stocksave">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="account" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="證券代號" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="證券名稱" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="買進價格" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="張數" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="總金額" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <!--產生期間發現錯誤:
+警告 6035: 關聯性 'FK_datasave_members' 在主要端上，有不屬於資料表索引鍵的資料行。已排除此關聯性。
+        <Association Name="FK_datasave_members" />-->
+        <!--產生期間發現錯誤:
+警告 6035: 關聯性 'FK_stockremain_members' 在主要端上，有不屬於資料表索引鍵的資料行。已排除此關聯性。
+        <Association Name="FK_stockremain_members" />-->
+        <!--產生期間發現錯誤:
+警告 6035: 關聯性 'FK_stocksave_members' 在主要端上，有不屬於資料表索引鍵的資料行。已排除此關聯性。
+        <Association Name="FK_stocksave_members" />-->
+        <EntityContainer Name="StockModelStoreContainer">
+          <EntitySet Name="data" EntityType="Self.data" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="datasave" EntityType="Self.datasave" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="members" EntityType="Self.members" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="stockremain" EntityType="Self.stockremain" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="stocksave" EntityType="Self.stocksave" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="StockModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="StockEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="data" EntityType="StockModel.data" />
+          <EntitySet Name="datasave" EntityType="StockModel.datasave" />
+          <EntitySet Name="members" EntityType="StockModel.members" />
+          <EntitySet Name="stocksave" EntityType="StockModel.stocksave" />
+          <EntitySet Name="stockremain" EntityType="StockModel.stockremain" />
+        </EntityContainer>
+        <EntityType Name="data">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="證券代號" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="證券名稱" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="成交股數" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="成交筆數" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="成交金額" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="開盤價" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="最高價" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="最低價" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="收盤價" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="漲跌正or負" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="漲跌價差" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="datasave">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="account" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="證券代號" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="證券名稱" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="成交股數" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="成交筆數" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="成交金額" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="開盤價" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="最高價" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="最低價" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="收盤價" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="漲跌正or負" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="漲跌價差" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="members">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="account" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="password" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="bankmoney" Type="Int32" />
+          <Property Name="photo" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="stocksave">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="account" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="證券代號" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="證券名稱" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="買進價格" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="張數" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="總金額" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="stockremain">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="account" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="證券代號" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="證券名稱" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="成交均價" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="張數" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="持有成本" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="現價" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="現值" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="預估收入" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="預估損益" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="預估獲利率" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="StockModelStoreContainer" CdmEntityContainer="StockEntities">
+          <EntitySetMapping Name="data">
+            <EntityTypeMapping TypeName="StockModel.data">
+              <MappingFragment StoreEntitySet="data">
+                <ScalarProperty Name="漲跌價差" ColumnName="漲跌價差" />
+                <ScalarProperty Name="漲跌正or負" ColumnName="漲跌正or負" />
+                <ScalarProperty Name="收盤價" ColumnName="收盤價" />
+                <ScalarProperty Name="最低價" ColumnName="最低價" />
+                <ScalarProperty Name="最高價" ColumnName="最高價" />
+                <ScalarProperty Name="開盤價" ColumnName="開盤價" />
+                <ScalarProperty Name="成交金額" ColumnName="成交金額" />
+                <ScalarProperty Name="成交筆數" ColumnName="成交筆數" />
+                <ScalarProperty Name="成交股數" ColumnName="成交股數" />
+                <ScalarProperty Name="證券名稱" ColumnName="證券名稱" />
+                <ScalarProperty Name="證券代號" ColumnName="證券代號" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="datasave">
+            <EntityTypeMapping TypeName="StockModel.datasave">
+              <MappingFragment StoreEntitySet="datasave">
+                <ScalarProperty Name="漲跌價差" ColumnName="漲跌價差" />
+                <ScalarProperty Name="漲跌正or負" ColumnName="漲跌正or負" />
+                <ScalarProperty Name="收盤價" ColumnName="收盤價" />
+                <ScalarProperty Name="最低價" ColumnName="最低價" />
+                <ScalarProperty Name="最高價" ColumnName="最高價" />
+                <ScalarProperty Name="開盤價" ColumnName="開盤價" />
+                <ScalarProperty Name="成交金額" ColumnName="成交金額" />
+                <ScalarProperty Name="成交筆數" ColumnName="成交筆數" />
+                <ScalarProperty Name="成交股數" ColumnName="成交股數" />
+                <ScalarProperty Name="證券名稱" ColumnName="證券名稱" />
+                <ScalarProperty Name="證券代號" ColumnName="證券代號" />
+                <ScalarProperty Name="account" ColumnName="account" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="members">
+            <EntityTypeMapping TypeName="StockModel.members">
+              <MappingFragment StoreEntitySet="members">
+                <ScalarProperty Name="photo" ColumnName="photo" />
+                <ScalarProperty Name="bankmoney" ColumnName="bankmoney" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="account" ColumnName="account" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="stocksave">
+            <EntityTypeMapping TypeName="StockModel.stocksave">
+              <MappingFragment StoreEntitySet="stocksave">
+                <ScalarProperty Name="總金額" ColumnName="總金額" />
+                <ScalarProperty Name="張數" ColumnName="張數" />
+                <ScalarProperty Name="買進價格" ColumnName="買進價格" />
+                <ScalarProperty Name="證券名稱" ColumnName="證券名稱" />
+                <ScalarProperty Name="證券代號" ColumnName="證券代號" />
+                <ScalarProperty Name="account" ColumnName="account" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="stockremain">
+            <EntityTypeMapping TypeName="StockModel.stockremain">
+              <MappingFragment StoreEntitySet="stockremain">
+                <ScalarProperty Name="預估獲利率" ColumnName="預估獲利率" />
+                <ScalarProperty Name="預估損益" ColumnName="預估損益" />
+                <ScalarProperty Name="預估收入" ColumnName="預估收入" />
+                <ScalarProperty Name="現值" ColumnName="現值" />
+                <ScalarProperty Name="現價" ColumnName="現價" />
+                <ScalarProperty Name="持有成本" ColumnName="持有成本" />
+                <ScalarProperty Name="張數" ColumnName="張數" />
+                <ScalarProperty Name="成交均價" ColumnName="成交均價" />
+                <ScalarProperty Name="證券名稱" ColumnName="證券名稱" />
+                <ScalarProperty Name="證券代號" ColumnName="證券代號" />
+                <ScalarProperty Name="account" ColumnName="account" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="無" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
